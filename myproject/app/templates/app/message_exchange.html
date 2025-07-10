@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<h2>Messages for Job: {{ job.title }}</h2>
+
+<div class="chat-box">
+  {% for message in messages %}
+    <div class="{% if message.sender == request.user %}sent{% else %}received{% endif %}">
+      <p><strong>{{ message.sender.username }}:</strong> {{ message.content }}</p>
+      <small>{{ message.timestamp }}</small>
+    </div>
+  {% empty %}
+    <p>No messages yet.</p>
+  {% endfor %}
+</div>
+
+<form method="post">
+  {% csrf_token %}
+  <textarea name="content" rows="3" placeholder="Type your message..."></textarea>
+  <button type="submit">Send</button>
+</form>
+
+<hr>
+
+<!-- ✅ Final decision buttons for the shop owner -->
+{% if request.user == job.posted_by %}
+  <form method="post" action="{% url 'finalize_job' app.id 'successful' %}" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Mark as Successful</button>
+  </form>
+  <form method="post" action="{% url 'finalize_job' app.id 'rejected' %}" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Reject</button>
+  </form>
+{% endif %}
+
+{% endblock %}

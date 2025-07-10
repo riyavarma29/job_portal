@@ -1,0 +1,621 @@
+  body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f9fc;
+  color: #333;
+}
+/* Brand */
+.brand {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* Navbar Links */
+.navbar-center a,
+.navbar-right a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+.navbar-center a:hover,
+.navbar-right a:hover {
+  background-color: white;
+  color: #004aad;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004aad;
+  color: white;
+  padding: 15px 30px;
+  flex-wrap: wrap;
+}
+
+.navbar-left {
+  flex: 1;
+}
+
+.navbar-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.navbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+
+main {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+.container, .message {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+}
+main > form {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+}
+button.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  transition: 1s;
+}
+
+button.btn-danger:hover {
+  background-color: #c82333;
+  transform: scale(1.1);
+}
+.file-link {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #e7f3ff;
+  border: 1px solid #007bff;
+  border-radius: 6px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 5px;
+  transition: background-color 0.3s;
+}
+
+.file-link:hover {
+  background-color: #d0e9ff;
+  text-decoration: underline;
+}
+.tick {
+  float: right;
+  font-size: 0.9em;
+  color: gray;
+  margin-left: 5px;
+}
+
+/*chat reply section*/
+.file-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: #999;
+}
+
+.send-btn {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.send-btn i {
+  font-size: 16px;
+}
+
+/*chat*/
+#chat-form {
+  margin-top: 1rem;
+}
+.chat{
+    display: flex;
+    gap: 2em;
+}
+/* 
+#chat-form textarea {
+  min-width: 250px;
+  max-width: 100%;
+}
+
+#file-input {
+  padding: 6px;
+} */
+.chat-form {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* 
+.chat-form textarea {
+  height: 38px;
+  min-height: 38px;
+  max-height: 60px;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.chat-form input[type="file"] {
+  padding: 6px 10px;
+}
+
+.chat-form button {
+  white-space: nowrap;
+  padding: 8px 16px;
+  border-radius: 8px;
+} */
+
+/* ====== Chat Styling ====== */
+.chat-heading {
+  text-align: center;
+  color: #004aad;
+  margin-bottom: 20px;
+}
+
+.chat-box {
+  max-width: 600px;
+  margin: auto;
+  background: #f0f4ff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  min-height: 70vh;
+}
+
+.messages {
+  max-height: 60vh;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.file-preview {
+  font-size: 0.85rem;
+  color: #555;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+/* Message bubble styles */
+.message-bubble {
+  max-width: 75%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 0.95rem;
+}
+
+.message-bubble.sent {
+  background-color: #004aad;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+}
+
+.message-bubble.received {
+  background-color: #e0e7ff;
+  color: #6e6d6d;
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+}
+
+.sender-name {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.timestamp {
+  font-size: 0.75em;
+  margin-top: 4px;
+  color:rgb(141, 139, 139);
+}
+
+.chat-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Keep individual list items styled, but not the whole <ul> */
+
+h2 {
+  color: #004aad;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.edit-btn, .delete-btn {
+  padding: 4px 10px;
+  text-decoration: none;
+  color: white;
+  background-color: #004aad;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.delete-btn {
+  background-color: #d9534f;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  opacity: 0.9;
+}
+
+/* ====== Forms ====== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+input[type="text"],
+input[type="url"],
+input[type="file"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
+  background-color: #004aad;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  width: fit-content;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #003a8c;
+}
+
+.message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* ====== Job List Page ====== */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #f0f4ff;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+/* ====== Filters ====== */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filters input,
+.filters select {
+  flex: 1 1 200px;
+  padding: 10px;
+  font-size: 0.95rem;
+}
+
+/* ====== Homepage Hero Section ====== */
+.hero-container {
+  background-color: #e9f2ff;
+  padding: 60px 0;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.hero-left {
+  flex: 1;
+  min-width: 280px;
+}
+
+.hero-left h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero-left .highlight {
+  color: #004aad;
+}
+
+.hero-left p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.hero-right {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+}
+
+.hero-right img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* ====== Features Section ====== */
+.features-section {
+  background-color: #ffffff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.features-section h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #004aad;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.feature {
+  background: #f8f9fb;
+  border-radius: 12px;
+  padding: 25px;
+  width: 300px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.feature h3 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* ====== Button Styles ====== */
+.btn {
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+}
+
+.btn.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn.outline {
+  border: 2px solid #007bff;
+  color: #007bff;
+  background-color: transparent;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+.logout-form {
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: transparent;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.95rem;
+  border: 1px solid white;
+  transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: white;
+  color: #004aad;
+}
+/* Profile Icon */
+.profile-icon {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 50%;
+  background-color: #0066cc;
+  transition: 0.3s;
+}
+
+.profile-icon:hover {
+  background-color: #004aad;
+  transform: scale(1.1);
+}
+
+/* share option styling */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    text-align: center;
+  }
+
+  .share-buttons a,
+  .share-buttons button {
+    display: inline-block;
+    margin: 10px 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background-color: #e7e7e7;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+    font-size: 14px;
+  }
+
+  .share-buttons a:hover,
+  .share-buttons button:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .close-modal {
+    margin-top: 15px;
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .close-modal:hover {
+    background-color: #c82333;
+  }
+
+/* ====== Responsive Layouts ====== */
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+   .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .navbar-center {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .navbar-right {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>{{ job.title }}</h2>
+    <p><strong>Category:</strong> {{ job.category }}</p>
+    <p><strong>Budget:</strong> ₹{{ job.budget }}</p>
+    <p><strong>Description:</strong> {{ job.description }}</p>
+    
+    {% if job.posted_by == user %}
+      <a href="{% url 'edit_job' job.id %}" class="edit-btn">Edit</a>
+      <a href="{% url 'delete_job' job.id %}" class="delete-btn">Delete</a>
+    {% endif %}
+  </div>
+{% endblock %}

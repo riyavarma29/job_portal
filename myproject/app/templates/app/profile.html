@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Your Profile</h2>
+
+  <p><strong>Username:</strong> {{ user.username }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Role:</strong> {{ user.profile.role }}</p>
+
+  {% if user.profile.role == 'developer' %}
+    <p><strong>Skills:</strong> {{ user.profile.skills }}</p>
+    <p><strong>Experience:</strong> {{ user.profile.experience }}</p>
+    <p><strong>GitHub:</strong> <a href="{{ user.profile.github }}" target="_blank">{{ user.profile.github }}</a></p>
+
+    {% if user.profile.resume %}
+      <a href="{{ user.profile.resume.url }}" download>Download Resume</a>
+    {% else %}
+      <p>No resume uploaded</p>
+    {% endif %}
+  {% endif %}
+</div>
+{% endblock %}

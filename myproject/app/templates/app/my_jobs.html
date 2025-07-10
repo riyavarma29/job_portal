@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<h2>My Applied & Saved Jobs</h2>
+<h3>Applied Jobs</h3>
+<ul>
+  {% for app in applied_jobs %}
+    <li>
+      <strong>{{ app.job.title }}</strong> | ₹{{ app.job.budget }}
+      <br>Status: {{ app.status }}
+      <br>Shop Owner: {{ app.job.posted_by.username }}<br>
+      {% if app.status == "successful" %}
+        <strong>Contact Email:</strong> {{ app.job.posted_by.email }}<br>
+        <div style="display: flex; gap: 10px; align-items: center; ">
+       <a href="{% url 'start_chat' app.job.posted_by.id %}" style="margin-top: 15px;" class="btn primary">Start Chat</a>
+      {% endif %}
+      <form method="post" action="{% url 'discard_application' app.job.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn-danger"  style="margin-top: 15px;">Discard Application</button>
+    </form>
+    </div>
+    </li>
+  {% empty %}
+    <li>No applications yet.</li>
+  {% endfor %}
+</ul>
+
+<h3>Saved Jobs</h3>
+<ul>
+  {% for saved in saved_jobs %}
+    <li>
+      <strong>{{ saved.job.title }}</strong> | ₹{{ saved.job.budget }}
+      <br>{{ saved.job.description }}
+      <form method="post" action="{% url 'remove_saved_job' saved.job.id %}" style="margin-top: 10px;">
+      {% csrf_token %}
+      <button type="submit" class="btn-danger">Remove from Saved</button>
+    </form>
+    </li>
+  {% empty %}
+    <li>No saved jobs yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

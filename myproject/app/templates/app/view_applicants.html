@@ -1,0 +1,125 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+
+  h2 {
+    text-align: center;
+    color: #004aad;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .applicant-card {
+    background-color: #f0f4ff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .applicant-card h4 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .applicant-card p {
+    margin: 6px 0;
+    font-size: 15px;
+  }
+
+  .applicant-card a {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  .btn {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+    margin-right: 10px;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+  strong{
+    margin-right: 0.4em;
+    line-height: 1.5em;
+  }
+  .badge {
+    background-color: #6c757d;
+    color: white;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  .no-applicants {
+    text-align: center;
+    color: #555;
+    font-style: italic;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="container">
+  <h2>Applicants for "{{ job.title }}"</h2>
+
+  {% for app in applications %}
+    <div class="applicant-card">
+      <h4>{{ app.developer.first_name|default:app.developer.username }}</h4>
+      <p><strong>Email:</strong> {{ app.developer.email }}</p>
+      <p><strong>Skills:</strong> {{ app.developer.profile.skills }}</p>
+      <p><strong>Experience:</strong> {{ app.developer.profile.experience }} years</p>
+      <p><strong>GitHub:</strong>
+        <a href="{{ app.developer.profile.github }}" target="_blank">{{ app.developer.profile.github }}</a>
+      </p>
+
+      <p><strong>Resume:</strong>
+        {% if app.developer.profile.resume %}
+          <a href="{{ app.developer.profile.resume.url }}" class="btn btn-info" download>View Resume</a>
+        {% else %}
+          <span class="text-danger">No resume uploaded</span>
+        {% endif %}
+      </p>
+
+      <p><strong>Application Status:</strong>
+        <span class="badge">{{ app.status }}</span>
+      </p>
+      {% if app.status == "successful" %}
+        <a href="{% url 'start_chat' app.developer.id %}" class="btn primary" style="text-decoration: none;margin-right: 1em;">Start Chat</a>
+      {% endif %}
+
+      {% if request.user == job.posted_by %}
+        <form method="post" action="{% url 'finalize_job' app.id 'successful' %}" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-success">Mark as Successful</button>
+        </form>
+        <form method="post" action="{% url 'finalize_job' app.id 'rejected' %}" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Reject</button>
+        </form>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p class="no-applicants">No applicants found.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

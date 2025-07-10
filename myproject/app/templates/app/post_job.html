@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<h2>Post a Job</h2>
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="title" placeholder="Job Title" required><br>
+  <textarea name="description" placeholder="Description" required></textarea><br>
+  <select name="category" required>
+    <option value="Website">Website</option>
+    <option value="App">App</option>
+    <option value="Tutoring">Tutoring</option>
+  </select><br>
+  <input type="number" name="budget" placeholder="Budget" required><br>
+  <button type="submit" class="btn btn-primary">Post Job</button>
+</form>
+    
+  
+{% endblock %}

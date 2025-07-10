@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<div class="hero-container">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1>Welcome to <span class="highlight">EmployMe</span></h1>
+      <p>Connect with developers and bring your website, app, or tutoring idea to life.</p>
+      <div class="hero-buttons">
+        {% if user.is_authenticated %}
+          <a href="{% url 'post_job' %}" class="btn primary">Post a Job</a>
+          <a href="{% url 'job_list' %}" class="btn outline">View Jobs</a>
+        {% else %}
+          <a href="{% url 'register' %}" class="btn primary">Get Started</a>
+          <a href="{% url 'login' %}" class="btn outline">Login</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="{% static 'images/job_portal_hero.svg' %}" alt="Hero Image">
+    </div>
+  </div>
+</div>
+
+<section class="features-section">
+  <h2>Why Choose EmployMe?</h2>
+  <div class="features">
+    <div class="feature">
+      <h3>💡 Post Your Ideas</h3>
+      <p>Describe your project and set your budget with ease.</p>
+    </div>
+    <div class="feature">
+      <h3>🧑‍💻 Find Developers</h3>
+      <p>Skilled developers ready to work on your vision.</p>
+    </div>
+    <div class="feature">
+      <h3>📬 Chat & Hire</h3>
+      <p>Communicate and finalize projects securely and efficiently.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
